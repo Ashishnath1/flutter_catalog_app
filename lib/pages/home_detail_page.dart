@@ -10,10 +10,12 @@ class HomeDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(backgroundColor: MyTheme.creamColor,),
-      backgroundColor: MyTheme.creamColor,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+      ),
+      backgroundColor: Theme.of(context).canvasColor,
       bottomNavigationBar: Container(
-        color: Colors.white,
+        color: Theme.of(context).cardColor,
         child: ButtonBar(
           buttonPadding: const EdgeInsets.symmetric(horizontal: 10),
           alignment: MainAxisAlignment.spaceBetween,
@@ -25,7 +27,7 @@ class HomeDetailPage extends StatelessWidget {
             ),),
             ElevatedButton(
                 style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(MyTheme.darkBluishColor),
+                  backgroundColor: MaterialStateProperty.all(Theme.of(context).primaryColorDark),
                   shape: MaterialStateProperty.all(const StadiumBorder()),
                 ),
                 onPressed: (){},
@@ -52,17 +54,30 @@ class HomeDetailPage extends StatelessWidget {
                   arcType: VxArcType.CONVEY,
                   edge: VxEdge.TOP,
                   child: Container(
-                    color: Colors.white,
+                    color: Theme.of(context).cardColor,
                     width: context.screenWidth,
                     child: Column(
                       children: [
                         Text(catalog.name, textScaleFactor: 2,
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            color: MyTheme.darkBluishColor
+                            color: Theme.of(context).primaryColor
                         ),),
                         Text(catalog.desc, textScaleFactor: 1.5),
                         const SizedBox(height: 30),
+                        const Padding(
+                          padding: EdgeInsets.all(20),
+                          child: Text("But I must explain to you how all this mistaken idea of "
+                              "denouncing pleasure and praising pain was born and I will give you"
+                              " a complete account of the system, and expound the actual teachings"
+                              " of the great explorer of the truth, the master-builder of human "
+                              "happiness. No one rejects, dislikes, or avoids pleasure itself,"
+                              " because it is pleasure, but because those who do not know how to"
+                              " pursue pleasure rationally encounter consequences that are"
+                              " extremely painful. Nor again is there anyone who loves or pursues"
+                              " or desires to obtain pain of itself, because it is pain, but "
+                             ,textAlign: TextAlign.justify,),
+                        )
                       ],
                     ).py64(),
                   ),

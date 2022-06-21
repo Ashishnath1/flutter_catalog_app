@@ -37,7 +37,7 @@ class CatalogItem extends StatelessWidget {
       height: 180,
       width: 100,
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Theme.of(context).cardColor,
         borderRadius: BorderRadius.circular(20),
       ),
       child: Row(
@@ -52,7 +52,7 @@ class CatalogItem extends StatelessWidget {
             children: [
               Text(catalog.name, style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  color: MyTheme.darkBluishColor
+                  color: Theme.of(context).primaryColor
               ),),
               Text(catalog.desc),
               const SizedBox(height: 30),
@@ -66,11 +66,11 @@ class CatalogItem extends StatelessWidget {
                   ),),
                   ElevatedButton(
                       style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all(MyTheme.darkBluishColor),
+                        backgroundColor: MaterialStateProperty.all(Theme.of(context).primaryColorDark),
                         shape: MaterialStateProperty.all(const StadiumBorder()),
                       ),
                       onPressed: (){},
-                      child: const Text("Buy", style:
+                      child: const Text("Add to cart", style:
                       TextStyle(
                           fontWeight: FontWeight.bold
                       ),))

@@ -15,13 +15,13 @@ class CatalogHeader extends StatelessWidget {
           style: TextStyle(
             fontSize: 32,
             fontWeight: FontWeight.bold,
-            color: MyTheme.darkBluishColor,
+            color: Theme.of(context).primaryColor
           ),),
-        const Text("Trending products",
+         Text("Trending products",
           textScaleFactor: 1.3,
           style:  TextStyle(
               fontSize: 20,
-              color: Colors.black54
+              color: Theme.of(context).primaryColor
           ),)
       ],
     );
