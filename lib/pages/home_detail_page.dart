@@ -1,5 +1,4 @@
 import 'package:catalog_app/models/catalog.dart';
-import 'package:catalog_app/widgets/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
 
@@ -16,7 +15,9 @@ class HomeDetailPage extends StatelessWidget {
       backgroundColor: Theme.of(context).canvasColor,
       bottomNavigationBar: Container(
         color: Theme.of(context).cardColor,
-        child: ButtonBar(
+        child: Padding(
+          padding: const EdgeInsets.all(32),
+          child :ButtonBar(
           buttonPadding: const EdgeInsets.symmetric(horizontal: 10),
           alignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -25,29 +26,37 @@ class HomeDetailPage extends StatelessWidget {
                 fontSize: 35,
                 color: Colors.red
             ),),
-            ElevatedButton(
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(Theme.of(context).primaryColorDark),
-                  shape: MaterialStateProperty.all(const StadiumBorder()),
-                ),
-                onPressed: (){},
-                child: const Text("Buy", style:
-                TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20
-                ),)
-            ).wh(100, 50)
+            SizedBox(
+              height: 50,
+              width: 150,
+              child: ElevatedButton(
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all(Theme.of(context).primaryColorDark),
+                    shape: MaterialStateProperty.all(const StadiumBorder()),
+                  ),
+                  onPressed: (){},
+                  child: const Text("Buy", style:
+                  TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20
+                  ),)
+              ),
+            )
           ],
-        ).p32(),
+        ),
+        ),
       ),
       body: SafeArea(
         bottom: false,
         child: Column(
           children: [
-            Hero(
-                tag: Key(catalog.id.toString()),
-                child: Image.network(catalog.image)
-            ).h32(context),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * .32,
+              child: Hero(
+                  tag: Key(catalog.id.toString()),
+                  child: Image.network(catalog.image)
+              ),
+            ),
              Expanded(
                 child: VxArc(
                   height: 30,
@@ -55,7 +64,7 @@ class HomeDetailPage extends StatelessWidget {
                   edge: VxEdge.TOP,
                   child: Container(
                     color: Theme.of(context).cardColor,
-                    width: context.screenWidth,
+                    width: MediaQuery.of(context).size.width,
                     child: Column(
                       children: [
                         Text(catalog.name, textScaleFactor: 2,
