@@ -36,29 +36,35 @@ class _CartTotal extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: 200,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          const Text("\$${999}", style: TextStyle(
-            color: Colors.red,
-            fontSize: 40
-          ),),
-          SizedBox(
-            width: 150,
-            height: 50,
-            child: ElevatedButton(
-                onPressed: (){},
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(Theme.of(context).primaryColorDark),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 32),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            const Text("\$${999}", style: TextStyle(
+              color: Colors.red,
+              fontSize: 40
+            ),),
+            SizedBox(
+              width: 150,
+              height: 50,
+              child: ElevatedButton(
+                  onPressed: (){
+                    ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text("Buying not supported yet")));
+                  },
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all(Theme.of(context).primaryColorDark),
 
-                ),
-                child: Text("Buy",style: TextStyle(
-                  color: Theme.of(context).primaryColor,
-                  fontSize: 24
-                ),)
-            ),
-          )
-        ],
+                  ),
+                  child: const Text("Buy",style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 24
+                  ),)
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
@@ -82,7 +88,7 @@ class _CartListState extends State<_CartList> {
             icon: const Icon(Icons.remove_circle_outline),
             onPressed: (){},
           ),
-          title: Text("iPhone"),
+          title: const Text("iPhone"),
         )
     );
   }
