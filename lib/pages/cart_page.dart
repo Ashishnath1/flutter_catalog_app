@@ -35,7 +35,7 @@ class _CartTotal extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _cart = CartModel();
+    final cart = CartModel();
     return SizedBox(
       height: 200,
       child: Padding(
@@ -43,7 +43,7 @@ class _CartTotal extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-             Text("\$${_cart.totalPrice}", style: const TextStyle(
+             Text("\$${cart.totalPrice}", style: const TextStyle(
               color: Colors.red,
               fontSize: 40
             ),),
@@ -84,13 +84,17 @@ class _CartListState extends State<_CartList> {
   final _cart = CartModel();
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
+    return _cart.items.isEmpty?
+    const Center(child: Text("Nothing to show", style: TextStyle(fontSize: 24),),) : ListView.builder(
         itemCount: _cart.items.length,
         itemBuilder: (context, index) => ListTile(
           leading: const Icon(Icons.done),
           trailing: IconButton(
             icon: const Icon(Icons.remove_circle_outline),
-            onPressed: (){},
+            onPressed: (){
+              _cart.remove(_cart.items[index]);
+              setState((){});
+            },
           ),
           title: Text(_cart.items[index].name),
         )
