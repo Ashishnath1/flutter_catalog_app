@@ -1,6 +1,8 @@
 
+import 'package:catalog_app/core/store.dart';
 import 'package:catalog_app/models/cart.dart';
 import 'package:flutter/material.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class CartPage extends StatelessWidget {
   const CartPage({Key? key}) : super(key: key);
@@ -16,12 +18,12 @@ class CartPage extends StatelessWidget {
          ),),
        ),
       body: Column(
-        children:  const [
+        children:  [
           Expanded(
               child:  Padding(
-                padding: EdgeInsets.all(32),
+                padding: const EdgeInsets.all(32),
                   child: _CartList())),
-          Divider(),
+          const Divider(),
           _CartTotal()
 
         ],
@@ -35,7 +37,7 @@ class _CartTotal extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cart = CartModel();
+    final CartModel cart = (VxState.store as MyStore).cart;
     return SizedBox(
       height: 200,
       child: Padding(
@@ -72,18 +74,11 @@ class _CartTotal extends StatelessWidget {
   }
 }
 
-class _CartList extends StatefulWidget {
-  const _CartList({Key? key}) : super(key: key);
+class _CartList extends StatelessWidget {
 
-  @override
-  State<_CartList> createState() => _CartListState();
-}
-
-class _CartListState extends State<_CartList> {
-
-  final _cart = CartModel();
   @override
   Widget build(BuildContext context) {
+    final CartModel _cart = (VxState.store as MyStore).cart;
     return _cart.items.isEmpty?
     const Center(child: Text("Nothing to show", style: TextStyle(fontSize: 24),),) : ListView.builder(
         itemCount: _cart.items.length,
@@ -93,7 +88,7 @@ class _CartListState extends State<_CartList> {
             icon: const Icon(Icons.remove_circle_outline),
             onPressed: (){
               _cart.remove(_cart.items[index]);
-              setState((){});
+              // setState((){});
             },
           ),
           title: Text(_cart.items[index].name),
